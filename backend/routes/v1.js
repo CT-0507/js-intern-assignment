@@ -6,7 +6,7 @@ router.route('/api/v1/products')
     
     .get(productsController.getAllProducts)
     .post(productsController.createNewProduct)
-    .put(productsController.updateProduct)
-    .delete(productsController.deleteProduct)
 router.get('/api/v1/products/:id', productsController.getProductById)
+router.put('/api/v1/products/:id', productsController.updateProduct)
+router.delete('/api/v1/products/:id', productsController.deleteProduct)
 module.exports = router

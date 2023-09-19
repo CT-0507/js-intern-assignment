@@ -40,8 +40,7 @@ const createNewProduct = asyncHandler(async (req, res, next) => {
 })
 
 const getProductById = asyncHandler(async (req, res) => {
-    var id = req.params.id
-    console.log(id)
+    const {id} = req.params
     if (!id) {
         res.status(400).json({message:"id is required"})
     }
@@ -55,6 +54,8 @@ const getProductById = asyncHandler(async (req, res) => {
 
 const updateProduct = asyncHandler(async (req, res, next) => {
     const { id, image, name, description, price, color} = req.body
+
+    console.log(req.body)
 
     if (!id || !image || !name || !price || !color)
     {
@@ -86,7 +87,7 @@ const updateProduct = asyncHandler(async (req, res, next) => {
 })
 
 const deleteProduct = asyncHandler(async (req, res, next) => {
-    const {id} = req.body
+    const {id} = req.params
 
     if (!id) {
         return res.status(400).json({message: 'Product ID Required'})
@@ -97,8 +98,10 @@ const deleteProduct = asyncHandler(async (req, res, next) => {
     if (!product) {
         return res.status(400).json({message: `Product Id ${id} not found`})
     }
+
+    console.log(product)
     
-    const result = await product.deleteOne()
+    const result = await Shoe.deleteOne({id: id})
 
     res.json({message: `Product ${product.name} with Id ${id} deleted`})
 })
