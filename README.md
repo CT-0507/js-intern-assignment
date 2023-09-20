@@ -16,3 +16,7 @@ This project used MongoDB Cloud so you don't need to have a local mongodb databa
 
 6. Install dependencies: $npm i
 7. Start frontend service by running this command :$npm run dev
+
+Video demo
+Deployed link: https://drive.google.com/file/d/1Y5QFZCwMieLXGsc0CkQXgnICIG1opCdl/view?usp=sharing
+Local Server: https://drive.google.com/file/d/1G4PFgmE1iQGT0Ji4mKMzRqE1MrUWa6ZZ/view?usp=sharing
