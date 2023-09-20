@@ -1,5 +1,3 @@
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import nikeLogo from './assets/nike.png'
 import './App.css'
 import Customebtn from './components/button'
