@@ -1,2 +1,2 @@
-export const baseURL = "http://localhost:3500/api/v1"
+export const baseURL = "https://gsneaker-api.onrender.com/api/v1"
 
