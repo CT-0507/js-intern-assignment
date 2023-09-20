@@ -12,6 +12,7 @@ import Placeholder from 'react-bootstrap/Placeholder'
 import Button from 'react-bootstrap/Button'
 import {useState, useEffect} from 'react'
 import useWindowDimensions from './hooks/useWindowDimensions'
+import { baseURL } from './config/baseURL'
 function App() {
   const { height, width } = useWindowDimensions();
   const isMobile = width <= 765
@@ -30,7 +31,7 @@ function App() {
     })
     setTotal(temp)
     const controller = new AbortController()
-    fetch('http://localhost:3500/api/v1/products', {signal: controller.signal}).then(res => res.json()).then(data => {
+    fetch(`${baseURL}/products`, {signal: controller.signal}).then(res => res.json()).then(data => {
       // setProducts(data)
       var updatedProducts = [...data]
       for(var i = 0; i < cart.length; ++i) {
@@ -54,17 +55,17 @@ function App() {
     setTotal(temp)
   }, [cart])
 
-  useEffect(() => {
-    for(var i = 0; i < cart.length; ++i) {
-      var updatedProducts = [...products]
-      console.log(cart)
-      var item = updatedProducts.find(product => product.id == cart[i].id)
-      console.log(item)
-      // item.isInCart = true
-      console.log(products)
-      setProducts(updatedProducts)
-    }
-  }, [])
+  // useEffect(() => {
+  //   for(var i = 0; i < cart.length; ++i) {
+  //     var updatedProducts = [...products]
+  //     console.log(cart)
+  //     var item = updatedProducts.find(product => product.id == cart[i].id)
+  //     console.log(item)
+  //     // item.isInCart = true
+  //     console.log(products)
+  //     setProducts(updatedProducts)
+  //   }
+  // }, [])
 
   const addProductToCart = async (id) => {
     const addedproduct = products.filter(item => item.id == id)
@@ -115,11 +116,6 @@ function App() {
 
   return (
     <>
-      {/* <div style={{display: "flex", width: "100%", height: "100%"}}>
-        <Customebtn type="plus"/>
-        <Customebtn type="minus"/>
-        <Customebtn type="trash" color="yellow"/>
-      </div> */}
       <Container className='justify-content-center align-items-center' fluid="md">
         <Row className="justify-content-md-center">
           <Col style={{marginRight: isDesktop ? "40px" : "0px", marginBottom: isMobile ? "40px" : "0px" , borderRadius: "28px"}}  sm="10" md="4" xs="4" id='card-column'>
@@ -132,7 +128,7 @@ function App() {
                 <Container style={{overflowY: "scroll", width: "100%", height: "500px"}} className='list-view-noscrollbar'>
                   {products.length == 0 ? (
                     <Card style={{ width: '100%' }}  className='p-0'>
-                      {/* <Card.Img variant="top" src="holder.js/100px180" />
+                      <Card.Img variant="top" src="holder.js/100px180" />
                       <Card.Body>
                         <Placeholder as={Card.Title} animation="glow">
                           <Placeholder xs={6} />
@@ -142,7 +138,7 @@ function App() {
                           <Placeholder xs={6} /> <Placeholder xs={8} />
                         </Placeholder>
                         <Placeholder.Button variant="primary" xs={6} />
-                      </Card.Body> */}
+                      </Card.Body>
                     </Card>
                   )
                 :
@@ -205,13 +201,8 @@ function App() {
                           <Card.Subtitle style={{marginBottom: "10px", fontSize: "0.9em"}} className={'text-start fw-bold'}>
                             ${product.price}
                           </Card.Subtitle>
-                          {/* <Placeholder as={Card.Text} animation="glow">
-                            <Placeholder xs={7} /> <Placeholder xs={4} /> <Placeholder xs={4} />{' '}
-                            <Placeholder xs={6} /> <Placeholder xs={8} />
-                          </Placeholder> */}
                           <div className='d-flex justify-content-between flex-row align-items-center'>
                             <div id="in-decrease-btn-group" className='d-flex flex-row align-items-center'>
-                              {/* <Customebtn type="minus" color="gray" onClick={decreaseQuantity(product.id)}/> */}
                               <button className={"btn-round center"} style={{backgroundColor: `var(--gray)`, display: "inline"}} onClick={() => decreaseQuantity(product.id)}>
                                   <img style={{display: 'flex', padding: "5px", height: "auto", maxWidth: "100%"}} src={`./src/assets/minus.png`} alt="button icon" />
                               </button>
@@ -219,7 +210,6 @@ function App() {
                               <button className={"btn-round center"} style={{backgroundColor: `var(--gray)`, display: "inline"}} onClick={() => increaseQuantity(product.id)}>
                                   <img style={{display: 'flex', padding: "5px", height: "auto", maxWidth: "100%"}} src={`./src/assets/plus.png`} alt="button icon" />
                               </button>
-                              {/* <Customebtn type="plus" color="gray" onClick={increaseQuantity(product.id)}/> */}
                             </div>
                             <button className={"btn-round center"} style={{backgroundColor: `var(--yellow)`, display: "inline"}} onClick={() => deleteProduct(product.id)}>
                                   <img style={{display: 'flex', padding: "5px", height: "auto", maxWidth: "100%"}} src={`./src/assets/trash.png`} alt="button icon" />
