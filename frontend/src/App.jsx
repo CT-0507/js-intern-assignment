@@ -11,6 +11,10 @@ import Button from 'react-bootstrap/Button'
 import {useState, useEffect} from 'react'
 import useWindowDimensions from './hooks/useWindowDimensions'
 import { baseURL } from './config/baseURL'
+import trash from './assets/trash.png'
+import plus from './assets/plus.png'
+import minus from './assets/minus.png'
+import check from './assets/check.png'
 function App() {
   const { height, width } = useWindowDimensions();
   const isMobile = width <= 765
@@ -52,18 +56,6 @@ function App() {
     
     setTotal(temp)
   }, [cart])
-
-  // useEffect(() => {
-  //   for(var i = 0; i < cart.length; ++i) {
-  //     var updatedProducts = [...products]
-  //     console.log(cart)
-  //     var item = updatedProducts.find(product => product.id == cart[i].id)
-  //     console.log(item)
-  //     // item.isInCart = true
-  //     console.log(products)
-  //     setProducts(updatedProducts)
-  //   }
-  // }, [])
 
   const addProductToCart = async (id) => {
     const addedproduct = products.filter(item => item.id == id)
@@ -157,7 +149,7 @@ function App() {
                           </Card.Text>
                           <Button style={{borderRadius: "28px", backgroundColor: "var(--yellow)", border: "none", color: "var(--black)", width: product.isInCart && "28px", height: product.isInCart && "28px", display: "inline", transition: "width 0.2s cubic-bezier(0.175, 0.885, 0.320, 1.275)"}} className='fw-bold p-0' disabled={product.isInCart} onClick={() => addProductToCart(product.id)}>
                               {product.isInCart ? (
-                                <img style={{display: 'flex', padding: "5px", height: "28px", maxWidth: "28px"}} src={`./src/assets/check.png`} alt="button icon" />
+                                <img style={{display: 'flex', padding: "5px", height: "28px", maxWidth: "28px"}} src={check} alt="button icon" />
                               ): (
                                 <p style={{padding: "5px"}} className='m-0'>Add to Cart</p>
                               )}
@@ -202,15 +194,15 @@ function App() {
                           <div className='d-flex justify-content-between flex-row align-items-center'>
                             <div id="in-decrease-btn-group" className='d-flex flex-row align-items-center'>
                               <button className={"btn-round center"} style={{backgroundColor: `var(--gray)`, display: "inline"}} onClick={() => decreaseQuantity(product.id)}>
-                                  <img style={{display: 'flex', padding: "5px", height: "auto", maxWidth: "100%"}} src={`./src/assets/minus.png`} alt="button icon" />
+                                  <img style={{display: 'flex', padding: "5px", height: "auto", maxWidth: "100%"}} src={minus} alt="button icon" />
                               </button>
                               <span style={{margin: "0 5px", lineHeight: "28px"}}>{product.quantity}</span>
                               <button className={"btn-round center"} style={{backgroundColor: `var(--gray)`, display: "inline"}} onClick={() => increaseQuantity(product.id)}>
-                                  <img style={{display: 'flex', padding: "5px", height: "auto", maxWidth: "100%"}} src={`./src/assets/plus.png`} alt="button icon" />
+                                  <img style={{display: 'flex', padding: "5px", height: "auto", maxWidth: "100%"}} src={plus} alt="button icon" />
                               </button>
                             </div>
                             <button className={"btn-round center"} style={{backgroundColor: `var(--yellow)`, display: "inline"}} onClick={() => deleteProduct(product.id)}>
-                                  <img style={{display: 'flex', padding: "5px", height: "auto", maxWidth: "100%"}} src={`./src/assets/trash.png`} alt="button icon" />
+                                  <img style={{display: 'flex', padding: "5px", height: "auto", maxWidth: "100%"}} src={trash} alt="button icon" />
                               </button>
                           </div>
                         </Card.Body>
