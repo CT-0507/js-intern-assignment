@@ -1,6 +1,4 @@
-# js-intern-assignment
 
-This is the project for JS developer intern assignment at Golden Owl.
 
 This project used MongoDB Cloud so you don't need to have a local mongodb database
 
